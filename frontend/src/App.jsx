@@ -134,6 +134,15 @@ function App() {
     setMode('login');
   };
 
+  const loggedInStudent =
+    role === 'student' && isLoggedIn
+      ? {
+          studentId: selectedStudentId,
+          studentName,
+          email,
+        }
+      : null;
+
   return (
     <div className="container">
       <div className="header-row">
@@ -350,7 +359,10 @@ function App() {
 
               <div className="section">
                 <h2>Register for a Course</h2>
-                <RegisterCourse onStudentChange={setSelectedStudentId} />
+                <RegisterCourse
+                  onStudentChange={setSelectedStudentId}
+                  loggedInStudent={loggedInStudent}
+                />
               </div>
 
               <div className="section">

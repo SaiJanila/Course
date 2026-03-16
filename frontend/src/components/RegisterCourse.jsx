@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 
-function RegisterCourse({ onStudentChange }) {
-  const [studentId, setStudentId] = useState('S001');
-  const [studentName, setStudentName] = useState('Test Student');
-  const [email, setEmail] = useState('test@student.com');
+function RegisterCourse({ onStudentChange, loggedInStudent }) {
+  const [studentId, setStudentId] = useState('');
+  const [studentName, setStudentName] = useState('');
+  const [email, setEmail] = useState('');
   const [courseId, setCourseId] = useState('');
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (loggedInStudent) {
+      setStudentId(loggedInStudent.studentId || '');
+      setStudentName(loggedInStudent.studentName || '');
+      setEmail(loggedInStudent.email || '');
+      if (loggedInStudent.studentId) {
+        onStudentChange(loggedInStudent.studentId);
+      }
+    }
+  }, [loggedInStudent, onStudentChange]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
