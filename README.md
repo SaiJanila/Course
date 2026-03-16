@@ -98,4 +98,9 @@ These are demo credentials defined on the frontend only (no DB table for admins)
 
 - Student accounts are stored on the **frontend** using `localStorage` (for demo purposes).  
 - Course and registration data are persisted in the **backend database** via Spring Data JPA.
+<img width="958" height="479" alt="image" src="https://github.com/user-attachments/assets/f50c0113-35f0-4775-a92f-2ebe2261dcdb" />
+<img width="959" height="480" alt="image" src="https://github.com/user-attachments/assets/231479b8-38c8-4747-bdcf-be618dc74730" />
+<img width="955" height="479" alt="image" src="https://github.com/user-attachments/assets/97825dfa-b137-4428-ae19-885cee7a38c1" />
+<img width="958" height="443" alt="image" src="https://github.com/user-attachments/assets/c0fa49ac-3e2f-4f12-a168-e23fee5e7e71" />
+<img width="958" height="473" alt="image" src="https://github.com/user-attachments/assets/d1795cf4-5a79-4d37-b530-8589651adfae" />
 
