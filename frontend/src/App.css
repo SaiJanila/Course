@@ -65,6 +65,12 @@ body {
   padding-block: 6px;
 }
 
+.student-greeting {
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+  color: #6b4b31;
+}
+
 .login-wrapper {
   margin-top: 20px;
   padding: 18px 18px 22px;

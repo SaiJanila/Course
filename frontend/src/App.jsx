@@ -15,6 +15,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [mode, setMode] = useState('login'); // login | create
+  const [adminCoursesRefreshKey, setAdminCoursesRefreshKey] = useState(0);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -153,6 +154,8 @@ function App() {
           </button>
         )}
       </div>
+
+      
 
       {!isLoggedIn && (
         <div className="login-wrapper">
@@ -350,7 +353,15 @@ function App() {
           {/* Left side: student / course view */}
           {role === 'student' && (
             <div className="layout-left">
-              <div className="column-title">Student</div>
+              <div className="column-title">
+                {studentName ? (
+                  <>
+                    Hello,&nbsp;<strong>{studentName}</strong>
+                  </>
+                ) : (
+                  'Student'
+                )}
+              </div>
 
               <div className="section">
                 <h2>Available Courses</h2>
@@ -379,7 +390,12 @@ function App() {
 
               <div className="section">
                 <h2>Admin &mdash; Add Course</h2>
-                <AddCourse />
+                <AddCourse onCourseAdded={() => setAdminCoursesRefreshKey((v) => v + 1)} />
+              </div>
+
+              <div className="section">
+                <h2>Courses (with ID)</h2>
+                <CourseList refreshKey={adminCoursesRefreshKey} />
               </div>
             </div>
           )}

@@ -2,7 +2,9 @@ package com.example.courseregistration.controller;
 
 import com.example.courseregistration.entity.Course;
 import com.example.courseregistration.service.CourseService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +34,11 @@ public class CourseController {
     @GetMapping
     public List<Course> getAllCourses() {
         return courseService.getAllCourses();
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 }
 

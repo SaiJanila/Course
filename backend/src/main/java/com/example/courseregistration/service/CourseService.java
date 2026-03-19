@@ -16,6 +16,24 @@ public class CourseService {
     }
 
     public Course addCourse(Course course) {
+        String incomingCourseId = course.getCourseId();
+        if (incomingCourseId == null || incomingCourseId.trim().isEmpty()) {
+            throw new IllegalArgumentException("course id required");
+        }
+
+        String trimmedCourseId = incomingCourseId.trim();
+
+        courseRepository.findByCourseId(trimmedCourseId)
+                .ifPresent(c -> {
+                    throw new IllegalArgumentException("course id same");
+                });
+        course.setCourseId(trimmedCourseId);
+
+        courseRepository.findByCourseNameIgnoreCase(course.getCourseName())
+                .ifPresent(c -> {
+                    throw new IllegalArgumentException("course name same");
+                });
+
         return courseRepository.save(course);
     }
 

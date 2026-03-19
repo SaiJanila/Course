@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 
-function CourseList() {
+function CourseList({ refreshKey }) {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ function CourseList() {
       .get('/courses')
       .then((res) => setCourses(res.data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [refreshKey]);
 
   return (
     <table className="table">
@@ -25,7 +25,7 @@ function CourseList() {
         {courses.map((c) => (
           <tr key={c.id}>
             <td>{c.courseId}</td>
-            <td>{c.courseName}</td>
+            <td title={c.description || ''}>{c.courseName}</td>
             <td>{c.instructor}</td>
             <td>{c.credits}</td>
           </tr>
